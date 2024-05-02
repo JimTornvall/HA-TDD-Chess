@@ -1,9 +1,20 @@
 package chess
 
+import "errors"
+
+// Chess game
+// expectations:
+// - 8x8 board
+// - 2 players
+// - 6 different pieces
+// - 2 colors
+// White always starts, and is always at the top of the board
+
 type Board struct {
 	// 8x8 board
 	board    [8][8]Piece
 	charType StringPiece
+	turn     Color
 }
 
 func NewBoard(char StringPiece) (Board, error) {
@@ -11,6 +22,7 @@ func NewBoard(char StringPiece) (Board, error) {
 
 	var b Board = Board{}
 	b.charType = char
+	b.turn = WHITE
 
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
@@ -57,6 +69,37 @@ func (b *Board) Init() {
 	//for i := 0; i < 8; i++ {
 	//	b.board[6][i] = NewPawnPiece(6, i, BLACK, PAWN)
 	//}
+}
+
+func (b *Board) Move(x1, y1, x2, y2 int) error {
+	if x1 < 0 || x1 > 7 || y1 < 0 || y1 > 7 {
+		return errors.New("invalid position")
+	}
+	if x2 < 0 || x2 > 7 || y2 < 0 || y2 > 7 {
+		return errors.New("invalid position")
+	}
+
+	if b.board[x1][y1].CanMove(b, x2, y2) {
+		b.board[x2][y2] = b.board[x1][y1]
+		return nil
+	}
+	return errors.New("invalid move")
+}
+
+func (b *Board) PieceAt(x, y int) Piece {
+	return b.board[x][y]
+}
+
+func (b *Board) SwitchTurn() {
+	if b.turn == WHITE {
+		b.turn = BLACK
+	} else {
+		b.turn = WHITE
+	}
+}
+
+func (b *Board) Turn() Color {
+	return b.turn
 }
 
 func (b *Board) Render() string {

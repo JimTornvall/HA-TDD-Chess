@@ -14,16 +14,15 @@ func (CharEmoji) GetPiece(color Color, pieceType PieceType) string {
 		case QUEEN:
 			piece = "❤️"
 		case ROOK:
-			piece = "😶‍🌫️"
+			piece = "🏰"
 		case KNIGHT:
 			piece = "🦄"
 		case BISHOP:
-			piece = "🥳"
+			piece = "🗼"
 		case PAWN:
-			piece = "😮"
+			piece = "🐮"
 		}
 	} else {
-
 		switch pieceType {
 		case EMPTY:
 			piece = "🔳"
