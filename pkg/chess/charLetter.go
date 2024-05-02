@@ -7,7 +7,7 @@ func (CharLetter) GetPiece(color Color, pieceType PieceType) string {
 	var piece string
 	switch pieceType {
 	case EMPTY:
-		piece = " "
+		piece = " O"
 	case KING:
 		piece = "K"
 	case QUEEN:
@@ -22,9 +22,9 @@ func (CharLetter) GetPiece(color Color, pieceType PieceType) string {
 		piece = "P"
 	}
 	if color == WHITE {
-		piece = "\\033[97m" + piece + "\\033[0m"
+		piece = "\033[97m" + piece + "\033[0m"
 	} else {
-		piece = "\\033[34m" + piece + "\\033[0m"
+		piece = "\033[31m" + piece + "\033[0m"
 	}
 	return piece
 }
