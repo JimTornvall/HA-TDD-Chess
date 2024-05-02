@@ -85,7 +85,7 @@ func (b *Board) Move(x1, y1, x2, y2 int) error {
 	if b.board[y1][x1].canMove(b, x2, y2) && b.board[y1][x1].Color() == b.turn {
 		b.board[y2][x2] = b.board[y1][x1]
 		b.SwitchTurn()
-		b.board[y1][x1] = &PieceEmpty{x1, y1, EMPTY, GetSquareColor(x1, y1)}
+		b.board[y1][x1] = &PieceEmpty{x1, y1, EMPTY, getSquareColor(x1, y1)}
 		return nil
 	}
 	return fmt.Errorf("cannot move piece from %d,%d to %d,%d", x1, y1, x2, y2)

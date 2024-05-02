@@ -7,15 +7,23 @@ func GetYCoordinate(y int) string {
 	return fmt.Sprint(8 - y)
 }
 
-// GetXCoordinate get chess x coordinate from array index
-func GetXCoordinate(x int) string {
+// getXCoordinate get chess x coordinate from array index
+func getXCoordinate(x int) string {
 	return string(rune(x + 65))
 }
 
-// GetSquareColor given an x,y coordinate return if a square should be black or white
-func GetSquareColor(x, y int) Color {
+// getSquareColor given an x,y coordinate return if a square should be black or white
+func getSquareColor(x, y int) Color {
 	if (x+y)%2 == 0 {
 		return WHITE
 	}
 	return BLACK
+}
+
+// abs returns the absolute value of x
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
 }

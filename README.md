@@ -38,4 +38,7 @@ go run .
 go test -v ./...
 ```
 
+## TODO
 
+- board move needs to use piece move
+- 
