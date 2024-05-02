@@ -4,7 +4,7 @@
 - **Year:** 2024
 - **School:** Åland University of Applied Sciences
 - **Course:** Test Driven Development
-- **Status:** [![Go Build and Test](https://github.com/JimTornvall/HA-TTD-SimpleCalculator/actions/workflows/go.yml/badge.svg)](https://github.com/JimTornvall/HA-TTD-SimpleCalculator/actions/workflows/go.yml)
+- **Status:** [![Go Build and Test](https://github.com/JimTornvall/HA-TTD-Chess/actions/workflows/go.yml/badge.svg)](https://github.com/JimTornvall/HA-TTD-Chess/actions/workflows/go.yml)
 
 ## Info
 
