@@ -16,7 +16,7 @@ type GameSuite struct {
 
 // SetupTest initializes the Simple calculator and logger before each test
 func (suite *GameSuite) SetupTest() {
-	suite.board = chess.NewBoard(chess.CharEmoji{})
+	suite.board, _ = chess.NewBoard(chess.CharEmoji{})
 }
 
 // TestSimpleSuite runs the Simple test suite, and all the tests within the suite

@@ -14,13 +14,13 @@ type PieceEmpty struct {
 }
 
 // Move moves the piece to the given position
-func (p *PieceEmpty) Move(board Board, x, y int) error { return errors.New("cannot move empty piece") }
+func (p *PieceEmpty) Move(b *Board, x, y int) error { return errors.New("cannot move empty piece") }
 
 // CanMove see if a piece can move to a position
-func (p *PieceEmpty) CanMove(board Board, x, y int) bool { return false }
+func (p *PieceEmpty) CanMove(b *Board, x, y int) bool { return false }
 
 // Position returns the current position of the piece
-func (p *PieceEmpty) Position(board Board) (x, y int) {
+func (p *PieceEmpty) Position(b *Board) (x, y int) {
 	return p.x, p.y // return x, y from the piece
 }
 
@@ -35,11 +35,13 @@ func (p *PieceEmpty) Type() PieceType {
 }
 
 // NewEmptyPiece creates a new empty piece
-func NewEmptyPiece(x, y int, color Color) *PieceEmpty {
-	return &PieceEmpty{
+func NewEmptyPiece(b *Board, x, y int, color Color) error {
+	piece := PieceEmpty{
 		x:     x,
 		y:     y,
 		color: color,
 		pType: EMPTY,
 	}
+	b.board[x][y] = &piece
+	return nil
 }

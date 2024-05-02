@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	b := chess.NewBoard(chess.CharEmoji{})
+	b, _ := chess.NewBoard(chess.CharEmoji{})
 	fmt.Println(b.Render())
 }

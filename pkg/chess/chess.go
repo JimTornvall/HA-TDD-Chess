@@ -6,19 +6,28 @@ type Board struct {
 	charType StringPiece
 }
 
-func NewBoard(char StringPiece) Board {
-	var b [8][8]Piece
+func NewBoard(char StringPiece) (Board, error) {
+	//var b [8][8]Piece
+
+	var b Board = Board{}
+	b.charType = char
 
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
 			if (i+j)%2 == 0 {
-				b[i][j] = NewEmptyPiece(i, j, WHITE)
+				err := NewEmptyPiece(&b, i, j, WHITE)
+				if err != nil {
+					return b, err
+				}
 			} else {
-				b[i][j] = NewEmptyPiece(i, j, BLACK)
+				err := NewEmptyPiece(&b, i, j, BLACK)
+				if err != nil {
+					return b, err
+				}
 			}
 		}
 	}
-	return Board{board: b, charType: char}
+	return b, nil
 }
 
 // Init initializes the board, by placing the pieces in their starting positions
