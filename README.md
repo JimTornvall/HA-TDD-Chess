@@ -29,7 +29,7 @@ go mod tidy
 ## Run
 
 ```shell
-go run
+go run .
 ```
 
 ## Test
