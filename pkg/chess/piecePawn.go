@@ -84,28 +84,6 @@ func (p *PiecePawn) canMove(b *Board, x, y int) bool {
 	return true
 }
 
-func (p *PiecePawn) canMove2(b *Board, x, y int) bool {
-	dx, dy := x-p.x, y-p.y
-	if p.pieceColor == WHITE {
-		if dx == 1 && dy == 0 && b.PieceAt(x, y) == nil {
-			return true
-		}
-		if dx == 1 && abs(dy) == 1 && b.PieceAt(x, y) != nil {
-			return true
-		}
-	} else {
-		if dx == -1 && dy == 0 && b.PieceAt(x, y) == nil {
-			return true
-		}
-		if dx == -1 && abs(dy) == 1 && b.PieceAt(x, y) != nil {
-			return true
-		}
-	}
-	// Add your current functionality here
-	// ...
-	return false
-}
-
 // Position returns the current position of the piece
 func (p *PiecePawn) position(b *Board) (x, y int) {
 	return p.x, p.y

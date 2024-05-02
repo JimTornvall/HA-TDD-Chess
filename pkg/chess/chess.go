@@ -56,9 +56,12 @@ func (b *Board) Init() {
 	//b.board[0][6] = NewKnightPiece(0, 6, WHITE, KNIGHT)
 	//b.board[0][7] = NewRookPiece(0, 7, WHITE, ROOK)
 	//
-	//for i := 0; i < 8; i++ {
-	//	b.board[1][i] = NewPawnPiece(1, i, WHITE, PAWN)
-	//}
+	for i := 0; i < 8; i++ {
+		err := NewPawnPiece(b, i, 1, WHITE)
+		if err != nil {
+			return
+		}
+	}
 	//
 	//b.board[7][0] = NewRookPiece(7, 0, BLACK, ROOK)
 	//b.board[7][1] = NewKnightPiece(7, 1, BLACK, KNIGHT)
@@ -69,9 +72,12 @@ func (b *Board) Init() {
 	//b.board[7][6] = NewKnightPiece(7, 6, BLACK, KNIGHT)
 	//b.board[7][7] = NewRookPiece(7, 7, BLACK, ROOK)
 	//
-	//for i := 0; i < 8; i++ {
-	//	b.board[6][i] = NewPawnPiece(6, i, BLACK, PAWN)
-	//}
+	for i := 0; i < 8; i++ {
+		err := NewPawnPiece(b, i, 6, BLACK)
+		if err != nil {
+			return
+		}
+	}
 }
 
 func (b *Board) Move(x1, y1, x2, y2 int) error {
