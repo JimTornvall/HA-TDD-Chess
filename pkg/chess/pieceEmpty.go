@@ -16,6 +16,9 @@ type PieceEmpty struct {
 // Move moves the piece to the given position
 func (p *PieceEmpty) Move(x, y int) error { return errors.New("cannot move empty piece") }
 
+// CanMove see if a piece can move to a position
+func (p *PieceEmpty) CanMove(x, y int) bool { return false }
+
 // Position returns the current position of the piece
 func (p *PieceEmpty) Position() (x, y int) {
 	return x, y

@@ -4,6 +4,8 @@ package chess
 type Piece interface {
 	// Move moves the piece to the given position
 	Move(x, y int) error
+	// CanMove see if a piece can move to a position
+	CanMove(x, y int) bool
 	// Position returns the current position of the piece
 	Position() (x, y int)
 	// Color returns the color of the piece
