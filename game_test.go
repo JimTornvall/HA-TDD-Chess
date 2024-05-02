@@ -9,21 +9,23 @@ import (
 	"testing"
 )
 
+// GameSuite is a test suite for the Game
 type GameSuite struct {
 	suite.Suite
 	board chess.Board
 }
 
-// SetupTest initializes the Simple calculator and logger before each test
+// SetupTest initializes the board before each test
 func (suite *GameSuite) SetupTest() {
 	suite.board, _ = chess.NewBoard(chess.CharEmoji{})
 }
 
-// TestSimpleSuite runs the Simple test suite, and all the tests within the suite
+// TestGameSuite runs the Game test suite, and all the tests within the suite
 func TestGameSuite(t *testing.T) {
 	suite.Run(t, new(GameSuite))
 }
 
+// HelperCaptureOutput captures the stdout output of a function
 func HelperCaptureOutput(f func()) (string, error) {
 	orig := os.Stdout
 	r, w, _ := os.Pipe()
@@ -38,6 +40,7 @@ func HelperCaptureOutput(f func()) (string, error) {
 	return string(out), err
 }
 
+// Test_Render_The_Board tests that the board can be rendered
 func (suite *GameSuite) Test_Render_The_Board() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🔳🔲🔳🔲🔳🔲🔳🔲 7

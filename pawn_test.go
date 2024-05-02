@@ -7,21 +7,23 @@ import (
 	"testing"
 )
 
+// PawnSuite is a test suite for the Pawn piece
 type PawnSuite struct {
 	suite.Suite
 	board chess.Board
 }
 
-// SetupTest initializes the Simple calculator and logger before each test
+// SetupTest initializes the board before each test
 func (suite *PawnSuite) SetupTest() {
 	suite.board, _ = chess.NewBoard(chess.CharEmoji{})
 }
 
-// TestSimpleSuite runs the Simple test suite, and all the tests within the suite
+// TestPawnSuite runs the Pawn test suite, and all the tests within the suite
 func TestPawnSuite(t *testing.T) {
 	suite.Run(t, new(PawnSuite))
 }
 
+// Test_Render_A_Pawn_And_Check_Its_Variables tests that a pawn can be rendered and its variables can be checked
 func (suite *PawnSuite) Test_Render_A_Pawn_And_Check_Its_Variables() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🐮🔲🔳🔲🔳🔲🔳🔲 7
@@ -47,6 +49,7 @@ func (suite *PawnSuite) Test_Render_A_Pawn_And_Check_Its_Variables() {
 	assert.Equal(suite.T(), expectedType, ptype)
 }
 
+// Test_Move_A_Pawn_One_Step_WHITE tests that a pawn can be moved one step
 func (suite *PawnSuite) Test_Move_A_Pawn_One_Step_WHITE() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🔳🔲🔳🔲🔳🔲🔳🔲 7
@@ -69,6 +72,7 @@ func (suite *PawnSuite) Test_Move_A_Pawn_One_Step_WHITE() {
 	assert.Equal(suite.T(), expected, output)
 }
 
+// Test_Move_A_Pawn_One_Step_BLACK tests that a pawn can be moved one step
 func (suite *PawnSuite) Test_Move_A_Pawn_One_Step_BLACK() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🔳🔲🔳🔲🔳🔲🔳🔲 7
@@ -95,7 +99,8 @@ func (suite *PawnSuite) Test_Move_A_Pawn_One_Step_BLACK() {
 	assert.Equal(suite.T(), expected, output)
 }
 
-func (suite *PawnSuite) Test_Blocked_Movement() {
+// Test_That_A_Blocked_Pawn_Cant_Move tests that a blocked pawn can't move
+func (suite *PawnSuite) Test_That_A_Blocked_Pawn_Cant_Move() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🐮🔲🔳🔲🔳🔲🔳🔲 7
 🤓🔳🔲🔳🔲🔳🔲🔳 6
@@ -119,6 +124,7 @@ func (suite *PawnSuite) Test_Blocked_Movement() {
 	assert.Equal(suite.T(), expected, output)
 }
 
+// Test_Move_A_Pawn_Two_Steps tests that a pawn can be moved two steps
 func (suite *PawnSuite) Test_Move_A_Pawn_Two_Steps() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🔳🔲🔳🔲🔳🔲🔳🔲 7
@@ -141,6 +147,7 @@ func (suite *PawnSuite) Test_Move_A_Pawn_Two_Steps() {
 	assert.Equal(suite.T(), expected, output)
 }
 
+// Test_Move_A_Pawn_Three_Steps_Should_Fail tests that a pawn can't be moved three steps
 func (suite *PawnSuite) Test_Move_A_Pawn_Three_Steps_Should_Fail() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🐮🔲🔳🔲🔳🔲🔳🔲 7
@@ -163,6 +170,7 @@ func (suite *PawnSuite) Test_Move_A_Pawn_Three_Steps_Should_Fail() {
 	assert.Equal(suite.T(), expected, output)
 }
 
+// Test_Move_A_Pawn_To_A_Invalid_Position tests that a pawn can't be moved to an invalid position
 func (suite *PawnSuite) Test_Move_A_Pawn_To_A_Invalid_Position() {
 	err1 := chess.NewPawnPiece(&suite.board, 0, 1, chess.WHITE)
 
@@ -177,6 +185,7 @@ func (suite *PawnSuite) Test_Move_A_Pawn_To_A_Invalid_Position() {
 	assert.NotNil(suite.T(), err4)
 }
 
+// Test_Move_A_Pawn_To_Strike_Opponent tests that a pawn can be moved to strike an opponent
 func (suite *PawnSuite) Test_Move_A_Pawn_To_Strike_Opponent() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🔳🔲🔳🔲🔳🔲🔳🔲 7
@@ -201,6 +210,7 @@ func (suite *PawnSuite) Test_Move_A_Pawn_To_Strike_Opponent() {
 	assert.Equal(suite.T(), expected, output)
 }
 
+// Test_Move_A_Pawn_To_Strike_Yourself tests that a pawn can't be moved to strike yourself
 func (suite *PawnSuite) Test_Move_A_Pawn_To_Strike_Yourself() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🐮🔲🔳🔲🔳🔲🔳🔲 7

@@ -4,6 +4,7 @@ import (
 	"reflect"
 )
 
+// PiecePawn represents a Pawn chess piece
 type PiecePawn struct {
 	x          int
 	y          int
@@ -12,16 +13,16 @@ type PiecePawn struct {
 	hasMoved   bool
 }
 
-// Move moves the piece to the given position
+// move moves the piece to the given position
 func (p *PiecePawn) move(b *Board, x, y int) error {
 	return nil
 }
 
-// CanMove see if a piece can move to a position
+// canMove see if a piece can move to a position
 func (p *PiecePawn) canMove(b *Board, x, y int) bool {
 
 	// check if the piece is moving to the same position
-	// as an other piece of the same other color
+	// as another piece of the same other color
 	dx, dy := x-p.x, y-p.y
 	if p.pieceColor == WHITE {
 		if dx == 1 && dy == 0 && b.PieceAt(x, y) == nil {
@@ -84,7 +85,7 @@ func (p *PiecePawn) canMove(b *Board, x, y int) bool {
 	return true
 }
 
-// Position returns the current position of the piece
+// position returns the current position of the piece
 func (p *PiecePawn) position(b *Board) (x, y int) {
 	return p.x, p.y
 }
@@ -94,7 +95,7 @@ func (p *PiecePawn) Color() Color {
 	return p.pieceColor
 }
 
-// Type returns the type of the piece
+// PType returns the type of the piece
 func (p *PiecePawn) PType() PieceType {
 	return p.pieceType
 }
