@@ -3,15 +3,15 @@ package chess
 // Piece is an interface that represents a chess piece
 type Piece interface {
 	// Move moves the piece to the given position
-	Move(board *Board, x, y int) error
+	move(board *Board, x, y int) error
 	// CanMove see if a piece can move to a position
-	CanMove(board *Board, x, y int) bool
+	canMove(board *Board, x, y int) bool
 	// Position returns the current position of the piece
-	Position(board *Board) (x, y int)
+	position(board *Board) (x, y int)
 	// Color returns the color of the piece
-	Color() Color
+	color() Color
 	// Type returns the type of the piece
-	Type() PieceType
+	pType() PieceType
 }
 
 // Color - Constants for the color of the piece

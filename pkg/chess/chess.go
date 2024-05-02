@@ -79,7 +79,7 @@ func (b *Board) Move(x1, y1, x2, y2 int) error {
 		return errors.New("invalid position")
 	}
 
-	if b.board[x1][y1].CanMove(b, x2, y2) {
+	if b.board[x1][y1].canMove(b, x2, y2) {
 		b.board[x2][y2] = b.board[x1][y1]
 		return nil
 	}
@@ -106,7 +106,7 @@ func (b *Board) Render() string {
 	var board string
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
-			board += b.charType.GetPiece(b.board[i][j].Color(), b.board[i][j].Type())
+			board += b.charType.GetPiece(b.board[i][j].color(), b.board[i][j].pType())
 		}
 		board += " " + GetYCoordinate(i)
 		board += "\n"
