@@ -12,9 +12,9 @@ func NewBoard(char StringPiece) Board {
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
 			if (i+j)%2 == 0 {
-				b[i][j] = NewEmptyPiece(1, 2, WHITE)
+				b[i][j] = NewEmptyPiece(i, j, WHITE)
 			} else {
-				b[i][j] = NewEmptyPiece(1, 2, BLACK)
+				b[i][j] = NewEmptyPiece(i, j, BLACK)
 			}
 		}
 	}
