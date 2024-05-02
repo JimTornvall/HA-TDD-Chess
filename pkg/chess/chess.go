@@ -1,6 +1,9 @@
 package chess
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 // Chess game
 // expectations:
@@ -73,21 +76,23 @@ func (b *Board) Init() {
 
 func (b *Board) Move(x1, y1, x2, y2 int) error {
 	if x1 < 0 || x1 > 7 || y1 < 0 || y1 > 7 {
-		return errors.New("invalid position")
+		return errors.New("invalid piece")
 	}
 	if x2 < 0 || x2 > 7 || y2 < 0 || y2 > 7 {
 		return errors.New("invalid position")
 	}
 
-	if b.board[x1][y1].canMove(b, x2, y2) {
-		b.board[x2][y2] = b.board[x1][y1]
+	if b.board[y1][x1].canMove(b, x2, y2) && b.board[y1][x1].Color() == b.turn {
+		b.board[y2][x2] = b.board[y1][x1]
+		b.SwitchTurn()
+		b.board[y1][x1] = &PieceEmpty{x1, y1, EMPTY, GetSquareColor(x1, y1)}
 		return nil
 	}
-	return errors.New("invalid move")
+	return fmt.Errorf("cannot move piece from %d,%d to %d,%d", x1, y1, x2, y2)
 }
 
 func (b *Board) PieceAt(x, y int) Piece {
-	return b.board[x][y]
+	return b.board[y][x]
 }
 
 func (b *Board) SwitchTurn() {
@@ -106,7 +111,7 @@ func (b *Board) Render() string {
 	var board string
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
-			board += b.charType.GetPiece(b.board[i][j].color(), b.board[i][j].pType())
+			board += b.charType.GetPiece(b.board[i][j].Color(), b.board[i][j].PType())
 		}
 		board += " " + GetYCoordinate(i)
 		board += "\n"

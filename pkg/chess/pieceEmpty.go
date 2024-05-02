@@ -25,12 +25,12 @@ func (p *PieceEmpty) position(b *Board) (x, y int) {
 }
 
 // Color returns the color of the piece
-func (p *PieceEmpty) color() Color {
+func (p *PieceEmpty) Color() Color {
 	return p.pieceColor
 }
 
-// Type returns the type of the piece
-func (p *PieceEmpty) pType() PieceType {
+// PType returns the type of the piece
+func (p *PieceEmpty) PType() PieceType {
 	return p.pieceType
 }
 

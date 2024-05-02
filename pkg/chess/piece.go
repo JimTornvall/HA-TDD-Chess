@@ -9,12 +9,12 @@ type Piece interface {
 	// Position returns the current position of the piece
 	position(board *Board) (x, y int)
 	// Color returns the color of the piece
-	color() Color
-	// Type returns the type of the piece
-	pType() PieceType
+	Color() Color
+	// PType returns the type of the piece
+	PType() PieceType
 }
 
-// Color - Constants for the color of the piece
+// Color - Constants for the Color of the piece
 type Color int
 
 const (

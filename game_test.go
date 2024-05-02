@@ -38,7 +38,7 @@ func HelperCaptureOutput(f func()) (string, error) {
 	return string(out), err
 }
 
-func (suite *GameSuite) Test_Render() {
+func (suite *GameSuite) Test_Render_The_Board() {
 	expected := `🔲🔳🔲🔳🔲🔳🔲🔳 8
 🔳🔲🔳🔲🔳🔲🔳🔲 7
 🔲🔳🔲🔳🔲🔳🔲🔳 6
@@ -52,6 +52,5 @@ func (suite *GameSuite) Test_Render() {
 
 	output := suite.board.Render()
 
-	//assert.Nil(suite.T(), err)
 	assert.Equal(suite.T(), expected, output)
 }
