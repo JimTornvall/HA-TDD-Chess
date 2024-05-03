@@ -38,3 +38,22 @@ func checkEmpty(b *Board, x int, y int) bool {
 	}
 	return false
 }
+
+// checkIsSameColor check if the piece is moving to a square with the same color
+func checkIsSameColor(b *Board, x1, y1, x2, y2 int) bool {
+	if b.board[y1][x1].Color() == b.board[y2][x2].Color() {
+		return true
+	}
+	return false
+}
+
+// isValidKnightMove checks if the move is a valid knight move
+// souce: (Book) Tetra Chess in Basic
+func isValidKnightMove(x, y, newX, newY int) bool {
+	// Calculate the absolute differences
+	xdiff := abs(newX - x)
+	ydiff := abs(newY - y)
+
+	// Check if it's a valid knight move
+	return (xdiff == 1 && ydiff == 2) || (xdiff == 2 && ydiff == 1)
+}
