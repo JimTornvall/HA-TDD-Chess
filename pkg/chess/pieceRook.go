@@ -47,7 +47,9 @@ func (p *PieceRook) canMove(b *Board, x, y int) bool {
 				}
 			}
 		}
-
+	}
+	if !checkEmpty(b, x, y) && checkIsSameColor(b, p.x, p.y, x, y) {
+		return false
 	}
 	return true
 }
