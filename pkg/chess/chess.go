@@ -56,7 +56,14 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[0][1] = NewKnightPiece(0, 1, WHITE, KNIGHT)
+	err = NewKnightPiece(b, 1, 0, WHITE)
+	if err != nil {
+		return err
+	}
+	err = NewKnightPiece(b, 6, 0, WHITE)
+	if err != nil {
+		return err
+	}
 	//b.board[0][2] = NewBishopPiece(0, 2, WHITE, BISHOP)
 	//b.board[0][3] = NewQueenPiece(0, 3, WHITE, QUEEN)
 	//b.board[0][4] = NewKingPiece(0, 4, WHITE, KING)
@@ -78,7 +85,14 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[7][1] = NewKnightPiece(7, 1, BLACK, KNIGHT)
+	err = NewKnightPiece(b, 1, 7, BLACK)
+	if err != nil {
+		return err
+	}
+	err = NewKnightPiece(b, 6, 7, BLACK)
+	if err != nil {
+		return err
+	}
 	//b.board[7][2] = NewBishopPiece(7, 2, BLACK, BISHOP)
 	//b.board[7][3] = NewQueenPiece(7, 3, BLACK, QUEEN)
 	//b.board[7][4] = NewKingPiece(7, 4, BLACK, KING)
@@ -102,6 +116,15 @@ func (b *Board) Move(x1, y1, x2, y2 int) error {
 	if x2 < 0 || x2 > 7 || y2 < 0 || y2 > 7 {
 		return errors.New("invalid position")
 	}
+
+	// DEBUG
+	//println("Moving piece from", x1, y1, "to", x2, y2)
+	//println("Piece at", x1, y1, "is", b.board[y1][x1].PType())
+	//println("Piece at", x2, y2, "is", b.board[y2][x2].PType())
+	//println("Turn is", b.turn)
+	//println("Piece color is", b.board[y1][x1].Color())
+	//println("Piece can move", b.board[y1][x1].canMove(b, x2, y2))
+	// DEBUG
 
 	if b.board[y1][x1].canMove(b, x2, y2) && b.board[y1][x1].Color() == b.turn {
 		b.board[y2][x2] = b.board[y1][x1]
