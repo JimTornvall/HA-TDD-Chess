@@ -1,6 +1,9 @@
 package chess
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 // GetYCoordinate get chess y coordinate from array index
 func GetYCoordinate(y int) string {
@@ -26,4 +29,12 @@ func abs(x int) int {
 		return -x
 	}
 	return x
+}
+
+// checkEmpty check if the piece is moving to an empty space
+func checkEmpty(b *Board, x int, y int) bool {
+	if reflect.TypeOf(b.PieceAt(x, y)) == reflect.TypeOf(&PieceEmpty{}) {
+		return true
+	}
+	return false
 }

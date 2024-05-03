@@ -1,9 +1,5 @@
 package chess
 
-import (
-	"reflect"
-)
-
 // PiecePawn represents a Pawn chess piece
 type PiecePawn struct {
 	x          int
@@ -77,8 +73,7 @@ func (p *PiecePawn) canMove(b *Board, x, y int) bool {
 		}
 	}
 
-	// check if the piece is moving to an empty space
-	if reflect.TypeOf(b.PieceAt(x, y)) != reflect.TypeOf(&PieceEmpty{}) {
+	if !checkEmpty(b, x, y) {
 		return false
 	}
 
