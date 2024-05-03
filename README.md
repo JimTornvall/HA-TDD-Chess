@@ -40,5 +40,11 @@ go test -v ./...
 
 ## TODO
 
-- board move needs to use piece move
-- 
+- board move needs to use piece move, to fully get all functionality
+- refactor into more packages
+- Future:
+  - rewrite to support
+    - charm/bubbletea - TUI interface
+    - charm/wish - SSH interface
+- diagonal moves for bishop should be separated into functions for the queen
+- straight moves for rook should be separated into functions for the queen

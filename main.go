@@ -10,8 +10,7 @@ func main() {
 	b, _ := chess.NewBoard(chess.CharEmoji{})
 	println("Empty Board before init")
 	fmt.Println(b.Render())
-	println()
 	println("Board after init")
-	b.Init()
+	_ = b.Init()
 	fmt.Println(b.Render())
 }
