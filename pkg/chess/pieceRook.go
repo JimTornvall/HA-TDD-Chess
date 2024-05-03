@@ -27,12 +27,10 @@ func (p *PieceRook) canMove(b *Board, x, y int) bool {
 		for i := 1; i < abs(dx); i++ {
 			if dx > 0 {
 				if !checkEmpty(b, p.x+i, p.y) {
-					println("checkEmpty")
 					return false
 				}
 			} else {
 				if !checkEmpty(b, p.x-i, p.y) {
-					println("checkEmpty")
 					return false
 				}
 			}
@@ -41,12 +39,10 @@ func (p *PieceRook) canMove(b *Board, x, y int) bool {
 		for i := 1; i < abs(dy); i++ {
 			if dy > 0 {
 				if !checkEmpty(b, p.x, p.y+i) {
-					println("checkEmpty")
 					return false
 				}
 			} else {
 				if !checkEmpty(b, p.x, p.y-i) {
-					println("checkEmpty")
 					return false
 				}
 			}
