@@ -64,11 +64,16 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[0][2] = NewBishopPiece(0, 2, WHITE, BISHOP)
+	err = NewBishopPiece(b, 2, 0, WHITE)
+	if err != nil {
+		return err
+	}
+	err = NewBishopPiece(b, 5, 0, WHITE)
+	if err != nil {
+		return err
+	}
 	//b.board[0][3] = NewQueenPiece(0, 3, WHITE, QUEEN)
 	//b.board[0][4] = NewKingPiece(0, 4, WHITE, KING)
-	//b.board[0][5] = NewBishopPiece(0, 5, WHITE, BISHOP)
-	//b.board[0][6] = NewKnightPiece(0, 6, WHITE, KNIGHT)
 	//
 	for i := 0; i < 8; i++ {
 		err := NewPawnPiece(b, i, 1, WHITE)
@@ -93,12 +98,16 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[7][2] = NewBishopPiece(7, 2, BLACK, BISHOP)
+	err = NewBishopPiece(b, 2, 7, BLACK)
+	if err != nil {
+		return err
+	}
+	err = NewBishopPiece(b, 5, 7, BLACK)
+	if err != nil {
+		return err
+	}
 	//b.board[7][3] = NewQueenPiece(7, 3, BLACK, QUEEN)
 	//b.board[7][4] = NewKingPiece(7, 4, BLACK, KING)
-	//b.board[7][5] = NewBishopPiece(7, 5, BLACK, BISHOP)
-	//b.board[7][6] = NewKnightPiece(7, 6, BLACK, KNIGHT)
-	//b.board[7][7] = NewRookPiece(7, 7, BLACK, ROOK)
 	//
 	for i := 0; i < 8; i++ {
 		err := NewPawnPiece(b, i, 6, BLACK)
