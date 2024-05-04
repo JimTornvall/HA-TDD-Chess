@@ -72,7 +72,10 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[0][3] = NewQueenPiece(0, 3, WHITE, QUEEN)
+	err = NewQueenPiece(b, 3, 0, WHITE)
+	if err != nil {
+		return err
+	}
 	//b.board[0][4] = NewKingPiece(0, 4, WHITE, KING)
 	//
 	for i := 0; i < 8; i++ {
@@ -106,7 +109,10 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[7][3] = NewQueenPiece(7, 3, BLACK, QUEEN)
+	err = NewQueenPiece(b, 3, 7, BLACK)
+	if err != nil {
+		return err
+	}
 	//b.board[7][4] = NewKingPiece(7, 4, BLACK, KING)
 	//
 	for i := 0; i < 8; i++ {
