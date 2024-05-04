@@ -51,3 +51,4 @@ go test -v ./...
 - **Board is the wrong way** switch places of BLACK and WHITE, in init and piecePawn
 - Extend asserts with more information, so you see what went wrong
 - Make sure all pieces test illegal moves
+- Check when a player moves if opponent king becomes in check

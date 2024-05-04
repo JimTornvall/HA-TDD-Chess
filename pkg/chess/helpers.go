@@ -142,3 +142,48 @@ func isValidKingMove(b *Board, x, y, newX, newY int) bool {
 	}
 	return true
 }
+
+// FindKingPosition finds the position of the king
+func FindKingPosition(b *Board, color Color) (int, int) {
+	for i := 0; i < 8; i++ {
+		for j := 0; j < 8; j++ {
+			if reflect.TypeOf(b.PieceAt(i, j)) == reflect.TypeOf(&pieceKing{}) && b.PieceAt(i, j).Color() == color {
+				return i, j
+			}
+		}
+	}
+	return -1, -1
+}
+
+// IsKingInCheck checks if the king is in check
+func IsKingInCheck(b *Board, color Color) bool {
+	kingX, kingY := FindKingPosition(b, color)
+	for i := 0; i < 8; i++ {
+		for j := 0; j < 8; j++ {
+			if !checkEmpty(b, i, j) && b.PieceAt(i, j).Color() != color {
+				if b.PieceAt(i, j).canMove(b, kingX, kingY) {
+					return true
+				}
+			}
+		}
+	}
+	return false
+}
+
+// Copy Board and move piece to check if king is in check
+func isKingInCheckAfterMove(b *Board, x1, y1, x2, y2 int) bool {
+	// Copy the board
+	newBoard, err := NewBoard(b.charType)
+	if err != nil {
+		// TODO: Handle error, send back could not create board
+		return false
+	}
+	newBoard = *b
+
+	// Move the piece
+	newBoard.board[y2][x2] = newBoard.board[y1][x1]
+	newBoard.board[y1][x1] = &PieceEmpty{x1, y1, EMPTY, getSquareColor(x1, y1)}
+
+	// Check if the king is in check
+	return IsKingInCheck(&newBoard, newBoard.Turn())
+}

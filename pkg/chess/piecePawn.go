@@ -76,6 +76,9 @@ func (p *PiecePawn) canMove(b *Board, x, y int) bool {
 	if !checkEmpty(b, x, y) {
 		return false
 	}
+	if isKingInCheckAfterMove(b, p.x, p.y, x, y) {
+		return false
+	}
 
 	return true
 }
