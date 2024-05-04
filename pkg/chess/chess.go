@@ -23,7 +23,7 @@ type Board struct {
 func NewBoard(char StringPiece) (Board, error) {
 	//var b [8][8]Piece
 
-	var b Board = Board{}
+	var b = Board{}
 	b.charType = char
 	b.turn = WHITE
 
@@ -76,8 +76,10 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[0][4] = NewKingPiece(0, 4, WHITE, KING)
-	//
+	err = NewKingPiece(b, 4, 0, WHITE)
+	if err != nil {
+		return err
+	}
 	for i := 0; i < 8; i++ {
 		err := NewPawnPiece(b, i, 1, WHITE)
 		if err != nil {
@@ -113,8 +115,10 @@ func (b *Board) Init() error {
 	if err != nil {
 		return err
 	}
-	//b.board[7][4] = NewKingPiece(7, 4, BLACK, KING)
-	//
+	err = NewKingPiece(b, 4, 7, BLACK)
+	if err != nil {
+		return err
+	}
 	for i := 0; i < 8; i++ {
 		err := NewPawnPiece(b, i, 6, BLACK)
 		if err != nil {
