@@ -60,7 +60,11 @@ func isValidKnightMove(x, y, newX, newY int) bool {
 
 // isValidBishopMove checks if the move is a valid bishop move
 // source: (Book) Tetra Chess in Basic
-func isValidBishopMove(x1, y1, x2, y2 int) bool {
+func isValidBishopMove(b *Board, x1, y1, x2, y2 int) bool {
+	if !checkDiagonal(b, x1, y1, x2, y2) {
+		return false
+	}
+
 	// Calculate the absolute differences between coordinates
 	dx := abs(x2 - x1)
 	dy := abs(y2 - y1)
@@ -69,8 +73,30 @@ func isValidBishopMove(x1, y1, x2, y2 int) bool {
 	return dx == dy
 }
 
-func isValidRookMove(x1, y1, x2, y2 int) bool {
-	return x1 == x2 || y1 == y2
+// isValidRookMove checks if the move is a valid rook move
+func isValidRookMove(b *Board, x1, y1, x2, y2 int) bool {
+	// Check if the move is either horizontal or vertical
+	if x1 != x2 && y1 != y2 {
+		return false
+	}
+
+	// Determine the direction of movement
+	dx := 0
+	dy := 0
+	if x1 != x2 {
+		dx = (x2 - x1) / abs(x2-x1)
+	} else {
+		dy = (y2 - y1) / abs(y2-y1)
+	}
+
+	// Check for obstacles along the path
+	for x, y := x1+dx, y1+dy; x != x2 || y != y2; x, y = x+dx, y+dy {
+		if !checkEmpty(b, x, y) {
+			return false // Obstacle found
+		}
+	}
+
+	return true
 }
 
 // checkDiagonal checks if there are any pieces in the way of a diagonal move

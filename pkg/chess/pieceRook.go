@@ -16,37 +16,10 @@ func (p *PieceRook) move(b *Board, x, y int) error {
 // canMove see if a piece can move to a position
 func (p *PieceRook) canMove(b *Board, x, y int) bool {
 
-	if !isValidRookMove(p.x, p.y, x, y) {
+	if !isValidRookMove(b, p.x, p.y, x, y) {
 		return false
 	}
 
-	// check if the piece move intersects with another piece
-	dx, dy := x-p.x, y-p.y
-	if dx != 0 {
-		for i := 1; i < abs(dx); i++ {
-			if dx > 0 {
-				if !checkEmpty(b, p.x+i, p.y) {
-					return false
-				}
-			} else {
-				if !checkEmpty(b, p.x-i, p.y) {
-					return false
-				}
-			}
-		}
-	} else {
-		for i := 1; i < abs(dy); i++ {
-			if dy > 0 {
-				if !checkEmpty(b, p.x, p.y+i) {
-					return false
-				}
-			} else {
-				if !checkEmpty(b, p.x, p.y-i) {
-					return false
-				}
-			}
-		}
-	}
 	if !checkEmpty(b, x, y) && checkIsSameColor(b, p.x, p.y, x, y) {
 		return false
 	}

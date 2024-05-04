@@ -47,8 +47,6 @@ go test -v ./...
   - rewrite to support
     - charm/bubbletea - TUI interface
     - charm/wish - SSH interface
-- diagonal moves for bishop should be separated into functions for the queen
-- straight moves for rook should be separated into functions for the queen
 - switch all movement and movement checks to use error instead of bool and error
 - **Board is the wrong way** switch places of BLACK and WHITE, in init and piecePawn
 - Extend asserts with more information, so you see what went wrong

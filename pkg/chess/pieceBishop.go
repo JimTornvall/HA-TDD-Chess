@@ -15,12 +15,7 @@ func (p *pieceBishop) move(b *Board, x, y int) error {
 
 // canMove see if a piece can move to a position
 func (p *pieceBishop) canMove(b *Board, x, y int) bool {
-	if !isValidBishopMove(p.x, p.y, x, y) {
-		return false
-	}
-
-	// check if any pieces are in the way
-	if !checkDiagonal(b, p.x, p.y, x, y) {
+	if !isValidBishopMove(b, p.x, p.y, x, y) {
 		return false
 	}
 
