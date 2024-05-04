@@ -69,6 +69,10 @@ func isValidBishopMove(x1, y1, x2, y2 int) bool {
 	return dx == dy
 }
 
+func isValidRookMove(x1, y1, x2, y2 int) bool {
+	return x1 == x2 || y1 == y2
+}
+
 // checkDiagonal checks if there are any pieces in the way of a diagonal move
 func checkDiagonal(b *Board, x1, y1, x2, y2 int) bool {
 	// Calculate the direction of the move

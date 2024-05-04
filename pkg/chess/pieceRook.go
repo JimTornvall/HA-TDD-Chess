@@ -16,8 +16,7 @@ func (p *PieceRook) move(b *Board, x, y int) error {
 // canMove see if a piece can move to a position
 func (p *PieceRook) canMove(b *Board, x, y int) bool {
 
-	// only move horizontally or vertically
-	if p.x != x && p.y != y {
+	if !isValidRookMove(p.x, p.y, x, y) {
 		return false
 	}
 
