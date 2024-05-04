@@ -230,8 +230,8 @@ func (suite *QueenSuite) Test_Move_A_Queen_Through_Another_Piece() {
  A B C D E F G H
 `
 	err1 := chess.NewQueenPiece(&suite.board, 3, 4, chess.WHITE)
-	err2 := chess.NewQueenPiece(&suite.board, 4, 6, chess.BLACK)
-	err3 := suite.board.Move(3, 4, 4, 7)
+	err2 := chess.NewQueenPiece(&suite.board, 3, 6, chess.BLACK)
+	err3 := suite.board.Move(3, 4, 3, 7)
 	output := suite.board.Render()
 
 	assert.Nil(suite.T(), err1)
@@ -253,8 +253,8 @@ func (suite *QueenSuite) Test_Move_A_Queen_To_Strike_Own_Piece() {
  A B C D E F G H
 `
 	err1 := chess.NewQueenPiece(&suite.board, 3, 4, chess.WHITE)
-	err2 := chess.NewKnightPiece(&suite.board, 4, 6, chess.WHITE)
-	err3 := suite.board.Move(3, 4, 4, 6)
+	err2 := chess.NewKnightPiece(&suite.board, 3, 6, chess.WHITE)
+	err3 := suite.board.Move(3, 4, 3, 6)
 	output := suite.board.Render()
 
 	assert.Nil(suite.T(), err1)
@@ -276,13 +276,13 @@ func (suite *QueenSuite) Test_Move_A_Queen_To_Strike_Opponent_Piece() {
  A B C D E F G H
 `
 	err1 := chess.NewQueenPiece(&suite.board, 3, 4, chess.WHITE)
-	err2 := chess.NewKnightPiece(&suite.board, 4, 6, chess.BLACK)
-	err3 := suite.board.Move(3, 4, 4, 6)
+	err2 := chess.NewKnightPiece(&suite.board, 3, 6, chess.BLACK)
+	err3 := suite.board.Move(3, 4, 3, 6)
 	output := suite.board.Render()
 
 	assert.Nil(suite.T(), err1)
 	assert.Nil(suite.T(), err2)
-	assert.NotNil(suite.T(), err3)
+	assert.Nil(suite.T(), err3)
 	assert.Equal(suite.T(), expected, output)
 }
 
@@ -291,7 +291,7 @@ func (suite *QueenSuite) Test_Move_A_Queen_Illegal_Move() {
 	err1 := chess.NewQueenPiece(&suite.board, 3, 4, chess.WHITE)
 	err2 := suite.board.Move(3, 4, 7, 7)
 	err3 := suite.board.Move(3, 4, 4, 1)
-	err4 := suite.board.Move(3, 4, 7, 4)
+	err4 := suite.board.Move(3, 4, 7, 3)
 
 	assert.Nil(suite.T(), err1)
 	assert.NotNil(suite.T(), err2)
