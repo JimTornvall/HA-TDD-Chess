@@ -27,7 +27,7 @@ func (CharEmoji) GetPiece(color Color, pieceType PieceType) string {
 		case EMPTY:
 			piece = "🔳"
 		case KING:
-			piece = "😎"
+			piece = "🥴"
 		case QUEEN:
 			piece = "😍"
 		case ROOK:
