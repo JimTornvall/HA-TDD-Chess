@@ -15,7 +15,14 @@ func (p *pieceQueen) move(b *Board, x, y int) error {
 
 // canMove see if a piece can move to a position
 func (p *pieceQueen) canMove(b *Board, x, y int) bool {
-	return false
+	if !isValidRookMove(b, p.x, p.y, x, y) && !isValidBishopMove(b, p.x, p.y, x, y) {
+		return false
+	}
+
+	if !checkEmpty(b, x, y) && checkIsSameColor(b, p.x, p.y, x, y) {
+		return false
+	}
+	return true
 }
 
 // position returns the current position of the piece
