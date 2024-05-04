@@ -119,3 +119,26 @@ func checkDiagonal(b *Board, x1, y1, x2, y2 int) bool {
 	}
 	return true
 }
+
+// isValidKingMove checks if the move is a valid king move
+func isValidKingMove(b *Board, x, y, newX, newY int) bool {
+	dx := abs(newX - x)
+	dy := abs(newY - y)
+
+	// Check if the move is within one step (horizontally, vertically, or diagonally)
+	if dx > 1 || dy > 1 {
+		return false
+	}
+
+	// Check if any other piece can move to the new position
+	for i := 0; i < 8; i++ {
+		for j := 0; j < 8; j++ {
+			if !checkEmpty(b, i, j) && (i != x || j != y) && !checkIsSameColor(b, x, y, i, j) {
+				if b.board[j][i].canMove(b, newX, newY) {
+					return false // Another piece can move to the target position
+				}
+			}
+		}
+	}
+	return true
+}

@@ -18,7 +18,16 @@ func (p *pieceKing) move(b *Board, x, y int) error {
 
 // canMove see if a piece can move to a position
 func (p *pieceKing) canMove(b *Board, x, y int) bool {
-	return false
+
+	if !isValidKingMove(b, p.x, p.y, x, y) {
+		return false
+	}
+
+	if !checkEmpty(b, x, y) && checkIsSameColor(b, p.x, p.y, x, y) {
+		return false
+
+	}
+	return true
 }
 
 // position returns the current position of the piece
