@@ -1,6 +1,6 @@
 package chess
 
-// PieceRook represents a Rook chess piece
+// PieceBishop represents a Rook chess piece
 type pieceBishop struct {
 	x          int
 	y          int
@@ -15,7 +15,19 @@ func (p *pieceBishop) move(b *Board, x, y int) error {
 
 // canMove see if a piece can move to a position
 func (p *pieceBishop) canMove(b *Board, x, y int) bool {
-	return false
+	if !isValidBishopMove(p.x, p.y, x, y) {
+		return false
+	}
+
+	// check if any pieces are in the way
+	if !checkDiagonal(b, p.x, p.y, x, y) {
+		return false
+	}
+
+	if !checkEmpty(b, x, y) && checkIsSameColor(b, p.x, p.y, x, y) {
+		return false
+	}
+	return true
 }
 
 // position returns the current position of the piece

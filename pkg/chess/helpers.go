@@ -48,12 +48,44 @@ func checkIsSameColor(b *Board, x1, y1, x2, y2 int) bool {
 }
 
 // isValidKnightMove checks if the move is a valid knight move
-// souce: (Book) Tetra Chess in Basic
+// source: (Book) Tetra Chess in Basic
 func isValidKnightMove(x, y, newX, newY int) bool {
 	// Calculate the absolute differences
-	xdiff := abs(newX - x)
-	ydiff := abs(newY - y)
+	dx := abs(newX - x)
+	dy := abs(newY - y)
 
 	// Check if it's a valid knight move
-	return (xdiff == 1 && ydiff == 2) || (xdiff == 2 && ydiff == 1)
+	return (dx == 1 && dy == 2) || (dx == 2 && dy == 1)
+}
+
+// isValidBishopMove checks if the move is a valid bishop move
+// source: (Book) Tetra Chess in Basic
+func isValidBishopMove(x1, y1, x2, y2 int) bool {
+	// Calculate the absolute differences between coordinates
+	dx := abs(x2 - x1)
+	dy := abs(y2 - y1)
+
+	// If the absolute differences are equal, it's a diagonal move
+	return dx == dy
+}
+
+// checkDiagonal checks if there are any pieces in the way of a diagonal move
+func checkDiagonal(b *Board, x1, y1, x2, y2 int) bool {
+	// Calculate the direction of the move
+	dx := 1
+	if x2 < x1 {
+		dx = -1
+	}
+	dy := 1
+	if y2 < y1 {
+		dy = -1
+	}
+
+	// Check if there are any pieces in the way
+	for i := 1; i < abs(x2-x1); i++ {
+		if !checkEmpty(b, x1+i*dx, y1+i*dy) {
+			return false
+		}
+	}
+	return true
 }
